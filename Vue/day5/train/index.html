@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p>{{num}}</p>
+        <p>{{nameEn}}</p>
+    </div>
+    <script src="../../vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#demo',
+            data: {
+                name: '让我不再心碎',
+                num: 0
+            },
+            computed: {
+                nameEn() {
+                    let nameEn = this.name + '，让生活充满音乐!';
+                    return nameEn;
+                }
+            },
+            watch: {
+                num() {
+                    console.log(this.num);
+                }
+            }
+
+        });
+        setInterval(() => {
+            vm.num += 1;
+        }, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+</body>
+
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            world: 'hello yao'
+        },
+        template: `<div v-text="world"></div>`,
+        beforeCreate() {
+            //创建前
+            alert('创建前,真实DOM为空，虚拟DOM为空,数据为空');
+            console.log('-----------beforeCreate------------');
+            console.log('视图层', this.$el); //真实DOM为空，虚拟DOM为空
+            console.log('数据层', this.$data); //数据为空
+        },
+        created() {
+            //创建后
+            alert('创建后,真实DOM为空，虚拟DOM为空,数据加载完成');
+            console.log('-----------created------------');
+            console.log('视图层', this.$el); //真实DOM为空，虚拟DOM为空
+            console.log('数据层', this.$data); //数据加载完成
+        },
+        beforeMount() {
+            //挂载前
+            alert('挂载前,真实DOM加载完成，虚拟DOM为空,数据加载完成');
+            console.log('-----------beforeMount------------');
+            console.log(this);
+            console.log('视图层', this.$el); //真实DOM加载完成，虚拟DOM为空
+            console.log('数据层', this.$data); //数据加载完成
+        },
+        mounted() {
+            //挂载后
+            alert('挂载后,真实DOM加载完成，虚拟DOM加载完成,数据加载完成');
+            console.log('-----------mounted------------');
+            console.log('视图层', this.$el); //真实DOM加载完成，虚拟DOM加载完成
+            console.log('数据层', this.$data); //数据加载完成
+        }
+
+    });
+</script>

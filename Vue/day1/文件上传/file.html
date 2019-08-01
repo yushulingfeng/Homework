@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" multiple id="file" />
+    <script>
+        // 选中节点
+        var file = document.querySelector("#file");
+        file.addEventListener("change", (e) => {
+            console.log(e);
+            // 选中第一个文件
+            console.log(file.files[0]);
+            let blob = file.files[0];
+            // ajax上传
+            var xmlhttp = new XMLHttpRequest();
+            //设置回调，当请求的状态发生变化时，就会被调用  
+            xmlhttp.onreadystatechange = function () {
+                //上传成功，返回的文件名，设置到父节点的背景中  
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText);
+                }
+            }
+            // 更改传输的方式
+            xmlhttp.setRequestHeader('Content-Type', 'application/octet-stream');
+            // xmlhttp.open("POST", "http://localhost:3000/sign/upload");
+            xmlhttp.open("POST", "http://localhost:8877");
+            // 把图片音频等以流形式在请求体装载好，发送给后端
+            xmlhttp.send(blob);
+            file.value = null;
+        })
+    </script>
+</body>
+
+</html>

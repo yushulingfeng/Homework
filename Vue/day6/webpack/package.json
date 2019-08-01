@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "jquery": "^3.4.1",
+    "webpack": "^4.36.1"
+  },
+  "devDependencies": {
+    "css-loader": "^3.1.0",
+    "html-loader": "^0.5.5",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.3",
+    "url-loader": "^2.1.0",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-cli": "^3.3.6"
+  }
+}

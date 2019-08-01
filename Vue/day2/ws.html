@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea id="text" name="" id="" cols="30" rows="10"></textarea>
+    <button>SEND</button>
+    <br>
+    <ul id="list"></ul>
+</body>
+
+</html>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script>
+    var socket = new WebSocket('ws://localhost:9977');
+
+    socket.onopen = function() {
+        console.log('服务器已连接 ws://localhost:9977')
+    }
+
+    socket.onclose = function() {
+        console.log('服务器已断开');
+    }
+
+    socket.onerror = function() {
+        console.log('服务器出错')
+    }
+
+    socket.onmessage = function(msg) {
+        // console.log(msg.data);
+        let html = `<li>${msg.data}</li>`;
+        let list = document.querySelector('#list');
+        list.innerHTML += html;
+    }
+
+    $('button').on('click', () => {
+        let message = $('#text').val();
+        // console.log(message);
+        socket.send(message);
+        $('#text').val('');
+    });
+</script>
